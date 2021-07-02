@@ -23,8 +23,8 @@ def get_stock(stockid,buy,num):
                       writing = "false"
                       break
                 else:
-                     pass
-          
+                      writing = "true"
+                     
           if writing != "false":
                 with open('./%s.csv'%stockid,'a',newline='') as f:
                   writer = csv.writer(f)
