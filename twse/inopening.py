@@ -51,12 +51,12 @@ def twse():
             x = f.readlines()
             for y in x:
                 z = y.split(",")
-                if tfmt in z:
+                if tfmt in z[0]:
                     writing = "false"
                     break
                 else:
-                    pass
-
+                    writing = "true"
+            
             if writing != "false":
                 with open('./taiwan_stock_index.csv','a',newline='') as f:   
                     writer = csv.writer(f)
