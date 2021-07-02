@@ -1,5 +1,5 @@
 import yfinance as yf
-import time,os,csv
+import time,os,csv,re
 from pprint import pprint
 
 t = time.localtime()
@@ -19,14 +19,17 @@ def get_stock(stockid,buy,num):
           x = f.readlines()
           for y in x:
                 z = y.split(",")
-                if "date" == z[0]:
-                      pass
-                elif tfmt == z[0]:
+                if tfmt in z[0]:
+                      writing = "false"
                       break
                 else:
-                      with open('./%s.csv'%stockid,'a',newline='') as f:
-                        writer = csv.writer(f)
-                        writer.writerow((tfmt,stockid,close,earning))  
+                     pass
+          
+          if writing != "false":
+                with open('./%s.csv'%stockid,'a',newline='') as f:
+                  writer = csv.writer(f)
+                  writer.writerow((tfmt,stockid,close,earning))  
+        
         except FileNotFoundError:
           with open('./%s.csv'%stockid,'w',newline='') as f:
             writer = csv.writer(f)

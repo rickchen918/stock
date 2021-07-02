@@ -51,14 +51,16 @@ def twse():
             x = f.readlines()
             for y in x:
                 z = y.split(",")
-                if "date" == z[0]:
-                    pass
-                elif tfmt == z[0]:
+                if tfmt in z:
+                    writing = "false"
                     break
                 else:
-                     with open('./taiwan_stock_index.csv','a',newline='') as f:   
-                        writer = csv.writer(f)
-                        writer.writerow((tfmt,index,point,ratio)) 
+                    pass
+
+            if writing != "false":
+                with open('./taiwan_stock_index.csv','a',newline='') as f:   
+                    writer = csv.writer(f)
+                    writer.writerow((tfmt,index,point,ratio)) 
         except FileNotFoundError:
             with open('./taiwan_stock_index.csv','w',newline='') as f:
                 writer = csv.writer(f)
